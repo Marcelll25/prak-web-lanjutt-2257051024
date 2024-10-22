@@ -2,12 +2,12 @@
 @section('content')
 <div class="container">
     <div class="profile">
-        <img src="{{ Storage::url($user->foto) }}">
+        <img src="/asset/images/profile.jpg">
     </div>
     <div class="info">
-        <div class="label">{{ $user->nama }}</div>
-        <div class="label">{{ $user->npm }}</div>
-        <div class="label">{{ $user->nama_kelas  ?? 'Kelas tidak ditemukan' }}</div>
+        <div class="label">{{ $nama }}</div>
+        <div class="label">{{ $npm }}</div>
+        <div class="label">{{ $nama_kelas }}</div>
     </div>
 </div>
 @endsection
