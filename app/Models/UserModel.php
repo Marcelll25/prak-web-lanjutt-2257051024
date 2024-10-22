@@ -20,12 +20,13 @@ class UserModel extends Model
     ];
 
     public function getUser($id=null){
-        if ($id != null) {
+        if ($id != null) { // show
             return $this->join('kelas', 'kelas.id', '=', 'user.kelas_id')
                         ->select('user.*', 'kelas.nama_kelas')
                         ->where('user.id', $id)
                         ->first();
         }
+        // list user
         return $this->join('kelas', 'kelas.id', '=', 'user.kelas_id')->select('user.*', 'kelas.nama_kelas as nama_kelas')->get();
     }
 
