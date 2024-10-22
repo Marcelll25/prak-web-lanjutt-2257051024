@@ -26,7 +26,6 @@ class UserController extends Controller
         return view('list_user', $data);
     }
 
-
     public function create(){
         $kelasModel = new Kelas();
 
@@ -38,17 +37,41 @@ class UserController extends Controller
         ];
 
         return view('create_user', $data);
+        }
+
+        public function store(Request $request)
+        {
+
+        $request->validate([
+            'nama' => 'required',
+            'npm' => 'required',
+            'kelas_id' => 'required',
+            'foto' =>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads', $filename, 'public');
+
+            $this->userModel->create([
+                'nama' => $request->input('nama'),
+                'npm' => $request->input('npm'),
+                'kelas_id' => $request->input('kelas_id'),
+                'foto' => $filePath,
+            ]);
+        }
+
+        return redirect()->to('/user/list');
+        }
+
+        public function show($id) {
+        $user = $this->userModel->getUser($id);
+
+        $data = [
+            'title' => 'Profile',
+            'user' => $user,
+        ];
+        return view('profile', $data);
     }
-
-    public function store(Request $request)
-    {
-        $this->userModel->create([
-        'nama' => $request->input('nama'),
-        'npm' => $request->input('npm'),
-        'kelas_id' => $request->input('kelas_id'),
-    ]);
-
-    return redirect()->to('/user');
-    }
-
 }
