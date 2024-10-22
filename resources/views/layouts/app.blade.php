@@ -34,6 +34,15 @@
             margin-bottom: 20px;
         }
 
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, select {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
         label {
             display: block;
             text-align: left;

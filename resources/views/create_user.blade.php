@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <form action="{{ route('user.store') }}" method="post">
+        <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <h1>Create User</h1>
 
@@ -15,6 +15,12 @@
             <input type="text" id="npm" name="npm" value="{{ old('npm') }}" class="@error('npm') invalid @enderror">
             @error('npm')
                 <div class="error">{{ $message }}</div>
+            @enderror
+
+            <label for="foto">Foto: </label>
+            <input type="file" id="foto" name="foto" value="{{ old('foto') }}" class="@error('foto') invalid @enderror"><br>
+            @error('foto')
+            <div class="error">{{ $message }}</div>
             @enderror
 
             <select name="kelas_id" id="kelas_id" class="@error('kelas_id') invalid @enderror">
