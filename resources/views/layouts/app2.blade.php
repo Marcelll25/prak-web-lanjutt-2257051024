@@ -34,6 +34,21 @@
             text-align: center;
         }
 
+
+        .btn-kembali {
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            color: white;
+            transition: background-color 0.3s ease;
+            margin-right: 5px;
+        }
+
+        .btn-kembali {
+            background-color: #008CBA;
+        }
+
         .profile {
             margin-bottom: 20px;
         }
